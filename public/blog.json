@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "question": "What is an access token and refresh token? How do they work and where should we store them on the client-side?",
+    "answer": "An access token is a piece of data that is used to authenticate and authorize a user to access certain resources or perform certain actions on a server. When a user logs in to an application, they are typically issued an access token that they can use to make authenticated requests to the server for a certain period of time. The server can validate the access token to ensure that the user is authorized to perform the requested action. A refresh token is also issued to a user when they log in to an application. Unlike an access token, a refresh token is used to obtain a new access token when the old one expires. The refresh token is sent to the server to request a new access token without requiring the user to log in again. On the client-side, access tokens and refresh tokens should be stored securely to prevent unauthorized access. Access tokens can be stored in a client-side cookie or local storage, while refresh tokens should be stored in an http-only cookie to prevent XSS attacks. It's important to note that storing tokens on the client-side can pose a security risk, so applications should use encryption and other security measures to protect sensitive data."
+  },
+  {
+    "id": 2,
+    "question": "Compare SQL and NoSQL databases?",
+    "answer": "SQL databases and NoSQL databases differ in their data models, scalability, querying methods, and more. SQL databases are relational databases that use structured query language (SQL) for defining and manipulating data. They enforce a predefined schema and are well-suited for complex queries and transactions. On the other hand, NoSQL databases are non-relational databases that do not use SQL as their primary query language. They are schema-less and can handle unstructured and semi-structured data, making them highly scalable and flexible. However, they may lack some of the features and consistency guarantees of SQL databases, and their query languages may be less expressive."
+  },
+  {
+    "id": 3,
+    "question": "What is express js? What is Nest JS ?",
+    "answer": "Express JS is a popular Node.js web application framework that provides a range of features for building robust and scalable web applications. It is designed to simplify the process of building web servers and APIs by providing a minimalistic and flexible approach to web development. Express JS allows developers to build APIs and server-side web applications using a variety of tools and libraries. Nest JS, on the other hand, is a modern and powerful Node.js framework that is designed for building efficient, scalable, and modular server-side applications. It provides a highly opinionated approach to web development, with a focus on maintainability and scalability. Nest JS provides a range of features such as dependency injection, middleware, and powerful routing capabilities, which make it an ideal choice for building complex server-side applications."
+  },
+  {
+    "id": 4,
+    "question": "What is MongoDB aggregate and how does it work?",
+    "answer": "MongoDB aggregate is a pipeline-based framework for data aggregation in MongoDB. It provides a powerful and flexible approach to analyze, group, and transform data stored in MongoDB collections. The pipeline consists of multiple stages that can be used to filter, sort, group, and transform data in various ways. The stages can be used in any order and can be combined in complex ways to perform sophisticated data analysis. The aggregate framework uses a declarative syntax that is easy to read and write, allowing developers to create complex queries with ease. Aggregate also supports the use of indexes to optimize query performance, making it a powerful tool for querying large datasets in MongoDB."
+  }
+]
