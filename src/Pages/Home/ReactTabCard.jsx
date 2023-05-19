@@ -14,7 +14,7 @@ const ReactTabCard = ({ toy }) => {
         <h2 className="card-title">{name}</h2>
         <p>{description}</p>
       </div>
-      <div className="card-actions justify-center mb-2">
+      <div className="card-actions justify-center mb-4">
           <Link to={`/products/${_id}`}><button className="btn btn-active btn-secondary ">View Details</button></Link>
         </div>
     </div>

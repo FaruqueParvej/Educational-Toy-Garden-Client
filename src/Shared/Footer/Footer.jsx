@@ -4,8 +4,8 @@ const Footer = () => {
       <div >
        <img className=" w-20 rounded-xl" src={"https://cdn.dribbble.com/users/1700393/screenshots/14456757/media/13060d4fcb0014c716b78743d405c04d.png?compress=1&resize=400x300"} alt="" />
         <p className="font-bold">
-          ACME Industries Ltd. <br />
-          Providing reliable tech since 1992
+          Educational Toy Garden <br />
+          Providing reliable products since 1992
         </p>
         <p>Copyright © 2023 - All right reserved</p>
       </div>

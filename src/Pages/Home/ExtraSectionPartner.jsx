@@ -1,7 +1,7 @@
 const ExtraSectionPartner = () => {
   return (
     <div>
-      <h2 className="text-6xl text-pink-900 font-extrabold text-center">
+      <h2 className="text-4xl text-pink-900 font-bold text-center">
         Retail Partners
       </h2>
       <div className="grid grid-cols-4 gap-4">
