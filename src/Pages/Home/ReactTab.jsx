@@ -23,7 +23,7 @@ const ReactTab = () => {
   return (
     <div className="mx-auto my-10">
       <Tabs>
-        <h2 className="text-center text-white text-5xl font-extrabold mb-5 border border-4 bg-cyan-800 p-4 m-5 rounded-3xl">
+        <h2 className="text-center text-white text-5xl font-extrabold mb-5  border-4 bg-cyan-800 p-4 m-5 rounded-3xl">
           Shop BY Category
         </h2>
         <div>

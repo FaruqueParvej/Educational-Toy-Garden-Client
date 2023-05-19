@@ -7,10 +7,10 @@ const Navbar = () => {
         <Link to="/">Home</Link>
       </li>
       <li tabIndex={0}>
-        <a className="justify-between">
+        <Link to="/alltoys" className="justify-between">
           All Toys
           
-        </a>
+        </Link>
       </li>
       <li>
         <Link to="blogs">Blogs</Link>
