@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const navItems = (
     <>
-    
       <li>
         <Link to="/">Home</Link>
       </li>
@@ -20,19 +19,10 @@ const Navbar = () => {
             <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" />
           </svg>
         </a>
-        <ul className="p-2">
-          <li>
-            <a>Submenu 1</a>
-          </li>
-          <li>
-            <a>Submenu 2</a>
-          </li>
-        </ul>
       </li>
       <li>
-        <Link to='blogs'>Blogs</Link>
+        <Link to="blogs">Blogs</Link>
       </li>
-      
     </>
   );
   return (
@@ -58,12 +48,12 @@ const Navbar = () => {
           <ul
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-          >{navItems}
-           <Link to="login" className="btn">
-          Login
-        </Link>
+          >
+            {navItems}
+            <Link to="login" className="btn">
+              Login
+            </Link>
           </ul>
-         
         </div>
         <label tabIndex={0}>
           <div className="w-20 rounded-full">
@@ -82,9 +72,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          {navItems}
-        </ul>
+        <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end hidden lg:flex">
         <Link to="login" className="btn mx-2">
