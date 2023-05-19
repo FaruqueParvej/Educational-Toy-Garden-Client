@@ -21,27 +21,39 @@ const ReactTab = () => {
   }, []);
 
   return (
-    <div className="mx-auto">
+    <div className="mx-auto my-10">
       <Tabs>
+        <h2 className="text-center text-white text-5xl font-extrabold mb-5 border border-4 bg-cyan-800 p-4 m-5 rounded-3xl">
+          Shop BY Category
+        </h2>
         <div>
-          <TabList className="flex justify-center border bg-orange-600 py-3">
+          <TabList className="flex justify-center border bg-cyan-800 py-3 m-8 rounded-3xl text-white text-lg font-extrabold">
             <Tab>Language toys</Tab>
             <Tab>math learning toys</Tab>
             <Tab>science kits</Tab>
           </TabList>
         </div>
-        <div className="my-5" >
-          <TabPanel style={{display:"flex"}} className="flex-col md:flex-row justify-center"  >
+        <div className="my-5">
+          <TabPanel
+            style={{ display: "flex" }}
+            className="flex-col md:flex-row justify-center"
+          >
             {languageToys.map((toy) => (
               <ReactTabCard key={toy._id} toy={toy}></ReactTabCard>
             ))}
           </TabPanel>
-          <TabPanel style={{display:"flex"}} className="flex-col md:flex-row justify-center" >
+          <TabPanel
+            style={{ display: "flex" }}
+            className="flex-col md:flex-row justify-center"
+          >
             {MathematicalToys.map((toy) => (
               <ReactTabCard key={toy._id} toy={toy}></ReactTabCard>
             ))}
           </TabPanel>
-          <TabPanel style={{display:"flex"}} className="flex-col md:flex-row justify-center" >
+          <TabPanel
+            style={{ display: "flex" }}
+            className="flex-col md:flex-row justify-center"
+          >
             {scientificToys.map((toy) => (
               <ReactTabCard key={toy._id} toy={toy}></ReactTabCard>
             ))}

@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <footer className="footer footer-center p-10 bg-emerald-700 text-primary-content">
+    <footer className="footer footer-center p-10 bg-cyan-600 text-primary-content">
       <div >
        <img className=" w-20 rounded-xl" src={"https://cdn.dribbble.com/users/1700393/screenshots/14456757/media/13060d4fcb0014c716b78743d405c04d.png?compress=1&resize=400x300"} alt="" />
         <p className="font-bold">
