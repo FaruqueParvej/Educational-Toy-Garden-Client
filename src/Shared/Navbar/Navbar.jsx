@@ -87,8 +87,11 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end hidden lg:flex">
-        <Link to="login" className="btn">
+        <Link to="login" className="btn mx-2">
           Login
+        </Link>
+        <Link to="register" className="btn">
+          Register
         </Link>
         <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">

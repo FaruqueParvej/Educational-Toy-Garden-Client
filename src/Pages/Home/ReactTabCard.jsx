@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
+
 const ReactTabCard = ({ toy }) => {
-  const { name, picture_url, price, rating, description } = toy;
+  const { _id,name, picture_url, price, rating, description } = toy;
   return (
     <div>
 
@@ -13,7 +15,7 @@ const ReactTabCard = ({ toy }) => {
         <p>{description}</p>
       </div>
       <div className="card-actions justify-center mb-2">
-          <button className="btn btn-active btn-secondary ">Buy Now</button>
+          <Link to={`/products/${_id}`}><button className="btn btn-active btn-secondary ">View Details</button></Link>
         </div>
     </div>
     </div>

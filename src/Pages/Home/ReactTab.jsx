@@ -24,7 +24,7 @@ const ReactTab = () => {
     <div className="mx-auto">
       <Tabs>
         <div>
-          <TabList className="flex justify-center">
+          <TabList className="flex justify-center border bg-orange-600 py-3">
             <Tab>Language toys</Tab>
             <Tab>math learning toys</Tab>
             <Tab>science kits</Tab>
