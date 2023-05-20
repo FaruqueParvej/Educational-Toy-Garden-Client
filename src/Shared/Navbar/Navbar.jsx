@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Navbar = () => {
+  const {user}=useContext(AuthContext)
+  console.log(user);
   const navItems = (
     <>
       <li>
@@ -12,12 +16,12 @@ const Navbar = () => {
         </Link>
       </li>
 
-      <li>
+      {user && <li>
         <Link to="addtoys">Add a Toy</Link>
-      </li>
-      <li>
+      </li>}
+      {user && <li>
         <Link to="mytoys">My Toys</Link>
-      </li>
+      </li>}
       <li>
         <Link to="blogs">Blogs</Link>
       </li>
