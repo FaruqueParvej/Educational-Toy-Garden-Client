@@ -69,7 +69,7 @@ const from = location.state?.from?.pathname|| '/';
                 </label>
               </div>
               <div className="form-control mt-6">
-                <input className="btn btn-primary" name="login" type="submit" />
+                <input className="btn btn-primary" name="login" type="submit" value='login' />
               </div>
               <button className="btn btn-outline btn-success flex justify-around">
                 <span>

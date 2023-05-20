@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 const AllToys = () => {
     const [toys, setToys] = useState([]);
+const limitedToys=toys.slice(0,20)
+
     useEffect(() => {
         fetch("http://localhost:5000/products")
           .then((res) => res.json())
@@ -28,7 +30,7 @@ const AllToys = () => {
       
       {/* row 2 */}
       {
-        toys.map((toy,index)=><tr key={toy._id} className="hover">
+        limitedToys.map((toy,index)=><tr key={toy._id} className="hover">
         <th>{index+1}</th>
         <td>{toy.seller_name}</td>
         <td>{toy.name}</td>
