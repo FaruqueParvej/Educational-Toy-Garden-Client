@@ -9,8 +9,14 @@ const Navbar = () => {
       <li tabIndex={0}>
         <Link to="/alltoys" className="justify-between">
           All Toys
-          
         </Link>
+      </li>
+
+      <li>
+        <Link to="addtoys">Add a Toy</Link>
+      </li>
+      <li>
+        <Link to="mytoys">My Toys</Link>
       </li>
       <li>
         <Link to="blogs">Blogs</Link>

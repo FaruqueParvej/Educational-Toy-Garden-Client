@@ -1,46 +1,44 @@
 import { FaDollarSign, FaStar, FaTruck, FaUmbrella } from "react-icons/fa";
 
 const ExtraSectionService = () => {
+ 
+  const commitments =[
+    {
+      'icon': <FaTruck />,
+      'heading': 'Super fast delivery',
+      'description': 'we have a big delivery team.'
+    },
+    {
+      'icon': <FaUmbrella/>,
+      'heading': '24/7 Customer Support.',
+      'description': 'For any kind of information'
+    },
+    {
+      'icon': <FaDollarSign/>,
+      'heading': 'Safe & secure payments',
+      'description': 'SSL Certifiyed Payment System'
+    },
+    {
+      'icon': <FaStar/>,
+      'heading': 'Returns & Refunds Policy.',
+      'description': 'We Take All Risk For You.'
+    }
+  ]
   return (
     <div className="my-4">
         <h2 className="text-4xl text-pink-900 font-bold text-center">Our Commitment</h2>
         <div  className="flex flex-col justify-center items-center md:flex-row">
-      <div className="flex mx-4 border-2 p-3">
-        <div className="text-5xl rounded-lg text-red-950 ">
-          <FaTruck />
-        </div>
-        <div className="px-3">
-          <h2 className="text-xs font-bold">Super fast delivery</h2>
-          <p>we have a big delivery team.</p>
-        </div>
-      </div>
-      <div className="flex mx-4 border-2 p-3">
-        <div className="text-5xl rounded-lg text-red-950">
-          <FaUmbrella />
-        </div>
-        <div className="px-3">
-          <h2 className="text-lg font-bold">24/7 Hours Customer Support.</h2>
-          <p>For any kind of information about our product.</p>
-        </div>
-      </div>
-      <div className="flex mx-4 border-2 p-3">
-        <div className="text-5xl rounded-lg text-red-950">
-          <FaDollarSign/>
-        </div>
-        <div className="px-3">
-          <h2 className="text-lg font-bold">Safe & secure payments</h2>
-          <p>SSL Certifiyed Payment System</p>
-        </div>
-      </div>
-      <div className="flex mx-4 border-2 p-3">
-        <div className="text-5xl rounded-lg text-red-950">
-          <FaStar/>
-        </div>
-        <div className="px-3">
-          <h2 className="text-lg font-bold">Returns & Refunds Policy.</h2>
-          <p>We Take All Risk For You.</p>
-        </div>
-      </div>
+        {
+          commitments.map((commitment,index)=><div className=" md:w-1/4 md:my-5" key={index}><div className='flex items-center md:border-t-2 md:border-r-2 md:border-b-2  p-3 h-32'>
+          <div className="text-5xl rounded-lg text-red-950 ">
+            {commitment.icon}
+          </div>
+          <div className="px-3">
+            <h2 className="text-lg font-bold">{commitment.heading}</h2>
+            <p>{commitment.description}</p>
+          </div>
+        </div></div>)
+        }
     </div>
     </div>
   );
