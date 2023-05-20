@@ -3,18 +3,23 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Register = () => {
-    const {createUser}=useContext(AuthContext);
+    const {createUser,UpdateUser}=useContext(AuthContext);
 const handleSignUp=(event)=>{
     event.preventDefault();
     const name=event.target.name.value;
     const email=event.target.email.value;
     const password = event.target.password.value;
-    const photoUrl = event.target.photoUrl.value;
-    console.log(name,email,password,photoUrl);
+    const photo = event.target.photoUrl.value;
+    console.log(name,email,password,photo);
     
     createUser(email,password)
-    .then(result=>{
-        const user=result.user
+    .then((result) => {
+      if(result.user){
+        UpdateUser(photo,name);
+        // console.log(photo,name);
+        event.target.reset()
+
+      }      
     })
     .catch((error) => {
         const errorCode = error.code;
@@ -23,6 +28,7 @@ const handleSignUp=(event)=>{
       });
 
     }
+
     return (
         <div className="hero min-h-screen bg-base-200">
           <div className="hero-content flex-col lg:flex-row-reverse">

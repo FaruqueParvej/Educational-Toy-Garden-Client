@@ -3,8 +3,14 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Navbar = () => {
-  const {user}=useContext(AuthContext)
-  console.log(user);
+  const {user,logout}=useContext(AuthContext)
+  console.log(user?.displayName);
+
+  const handleLogOut=()=>{
+    logout()
+  }
+
+
   const navItems = (
     <>
       <li>
@@ -77,21 +83,15 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
       <div className="navbar-end hidden lg:flex">
-        <Link to="login" className="btn mx-2">
-          Login
-        </Link>
-        <Link to="register" className="btn">
-          Register
-        </Link>
-        <div className="dropdown dropdown-end">
+      <div className="dropdown dropdown-end">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
+            {user && <div className="w-10 rounded-full">
               <img
                 src={
                   "https://wpjournalist.nl/wp-content/uploads/2021/09/myAvatar.png"
                 }
               />
-            </div>
+            </div>}
           </label>
           <ul
             tabIndex={0}
@@ -101,10 +101,17 @@ const Navbar = () => {
               <a className="justify-between">Profile</a>
             </li>
             <li>
-              <a>Logout</a>
+              <button onClick={handleLogOut} className="btn">Logout</button>
             </li>
           </ul>
         </div>
+        <Link to="login" className="btn mx-2">
+          Login
+        </Link>
+        <Link to="register" className="btn">
+          Register
+        </Link>
+        
       </div>
     </div>
   );
