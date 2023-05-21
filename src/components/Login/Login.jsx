@@ -1,13 +1,31 @@
-import { FaGoogle } from "react-icons/fa";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { GoogleAuthProvider } from "firebase/auth";
 import { useContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
-const navigate =useNavigate();
-const location =useLocation();
-const from = location.state?.from?.pathname|| '/';
+  const { signIn, googleLogIn } = useContext(AuthContext);
+
+  const googleProvider = new GoogleAuthProvider();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+
+  const handleGoogleLogIn = () => {
+    googleLogIn(googleProvider)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+
+        console.log(errorMessage);
+        // setErrorMessage(errorMessage);
+      });
+  };
 
   const handleSignIn = (event) => {
     event.preventDefault();
@@ -16,11 +34,11 @@ const from = location.state?.from?.pathname|| '/';
     const password = event.target.password.value;
 
     // console.log(email, password);
-    signIn (email, password)
-    .then((result) => {
+    signIn(email, password)
+      .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate(from,{replace:true})
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorCode = error.code;
@@ -38,48 +56,65 @@ const from = location.state?.from?.pathname|| '/';
             alt=""
           />
         </div>
-        <form onSubmit={handleSignIn}>
-          <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <div className="card-body">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="text"
-                  name="email"
-                  placeholder="email"
-                  className="input input-bordered"
-                />
+        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div>
+            <form onSubmit={handleSignIn}>
+              <div className="card-body">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Email</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="email"
+                    placeholder="email"
+                    className="input input-bordered"
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Password</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="password"
+                    placeholder="password"
+                    className="input input-bordered"
+                  />
+                  <div className="mt-2 flex p-2">
+                    <h2>Don't have an account?</h2>
+                    <Link
+                      to="/register"
+                      className="text-cyan-700 link link-hover"
+                    >
+                      Register
+                    </Link>
+                  </div>
+                </div>
+                <div className="form-control mt-6">
+                  <input
+                    className="btn btn-primary"
+                    name="login"
+                    type="submit"
+                    value="login"
+                  />
+                </div>
               </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="text"
-                  name="password"
-                  placeholder="password"
-                  className="input input-bordered"
-                />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
-              </div>
-              <div className="form-control mt-6">
-                <input className="btn btn-primary" name="login" type="submit" value='login' />
-              </div>
-              <button className="btn btn-outline btn-success flex justify-around">
-                <span>
-                  <FaGoogle />
-                </span>
-                Continue with Google
-              </button>
-            </div>
+            </form>
           </div>
-        </form>
+          <div className="mx-auto mb-4">
+            <button
+              onClick={handleGoogleLogIn}
+              className="btn btn-outline flex btn-success 
+            "
+            >
+              <span className="px-2">
+                <FaGoogle />
+              </span>
+              Continue with Google
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
