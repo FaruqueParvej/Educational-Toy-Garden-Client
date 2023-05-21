@@ -5,7 +5,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 const Navbar = () => {
   const { user, logout } = useContext(AuthContext);
   console.log(user?.displayName);
-
+  console.log(user?.photoURL);
   const handleLogOut = () => {
     logout();
   };
@@ -110,9 +110,7 @@ const Navbar = () => {
                     onMouseOver={handleMouseOver}
                     onMouseOut={handleMouseOut}
                     className="rounded-full"
-                    src={
-                      "https://wpjournalist.nl/wp-content/uploads/2021/09/myAvatar.png"
-                    }
+                    src={user?.photoURL}
                   />
                 </div>
               </label>
