@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import ReactTabCard from "./ReactTabCard";
 
@@ -15,7 +15,9 @@ const ReactTab = () => {
 
   console.log(languageToys);
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch(
+      "https://b7a11-toy-marketplace-server-side-faruque-parvej.vercel.app/products"
+    )
       .then((res) => res.json())
       .then((data) => setToys(data));
   }, []);

@@ -103,12 +103,13 @@ const Navbar = () => {
         <div className="dropdown dropdown-end">
           {user && (
             <>
-              <label tabIndex={0} className="flex">
+              <label tabIndex={0} className="flex justify-between">
                 <div>{showName && <p>{user?.displayName}</p>}</div>
                 <div className="w-10 rounded-full  avatar">
                   <img
                     onMouseOver={handleMouseOver}
                     onMouseOut={handleMouseOut}
+                    className="rounded-full"
                     src={
                       "https://wpjournalist.nl/wp-content/uploads/2021/09/myAvatar.png"
                     }

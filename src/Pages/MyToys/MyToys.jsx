@@ -1,12 +1,13 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const MyToys = () => {
   const [myToys, setMyToys] = useState([]);
   const [editItem, setEditItem] = useState({});
   const { user, loading } = useContext(AuthContext);
-
+  // console.log(editItem);
   const addItems = [
     {
       title: "Price",
@@ -27,28 +28,75 @@ const MyToys = () => {
   ];
 
   useEffect(() => {
-    fetch("http://localhost:5000/myProducts", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ email: user?.email }),
-    })
+    fetch(
+      "https://b7a11-toy-marketplace-server-side-faruque-parvej.vercel.app/myProducts",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ email: user?.email }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => setMyToys(data));
   }, [user?.email, myToys]);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/product/${id}`, {
-      method: "Delete",
-    })
+    fetch(
+      `https://b7a11-toy-marketplace-server-side-faruque-parvej.vercel.app/product/${id}`,
+      {
+        method: "Delete",
+      }
+    )
       .then((res) => res.json())
       .then((data) => console.log(data));
   };
 
   const handleEdit = (id) => {
-    const editItem = myToys.find((item) => item._id === id);
-    setEditItem(editItem);
+    const edit_Item = myToys.find((item) => item._id === id);
+    console.log(edit_Item);
+    setEditItem(edit_Item);
+  };
+
+  const handleUpdate = (e, id) => {
+    e.preventDefault();
+    const form = e.target;
+
+    const price = form.price.value;
+    const available_quantity = form.available_quantity.value;
+
+    const description = form.description.value;
+
+    const updateToy = {
+      price,
+      available_quantity,
+
+      description,
+    };
+    console.log(updateToy);
+    fetch(
+      `https://b7a11-toy-marketplace-server-side-faruque-parvej.vercel.app/product/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(updateToy),
+      }
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          Swal.fire({
+            title: "success!",
+            text: "toy updated successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+        }
+      });
   };
 
   if (loading) {
@@ -107,38 +155,49 @@ const MyToys = () => {
         </tbody>
       </table>
 
-      {/* Put this part before </body> tag */}
       <input type="checkbox" id="my-modal" className="modal-toggle" />
       <div className="modal">
         <div className="modal-box">
           <div className="bg-cyan-300 p-20  md:rounded-3xl">
             <h2 className="text-3xl font-semibold text-center">Edit toy</h2>
+            <form onSubmit={(e) => handleUpdate(e, editItem?._id)}>
+              <div className="grid grid-cols-1 gap-2 md:mb-5">
+                {!editItem.price && <h1>Loading...</h1>}
+                {editItem.price &&
+                  addItems.map((addItem, index) => (
+                    <label key={index} className="input-group">
+                      <span className="w-2/5">{addItem.title}</span>
+                      <input
+                        type="text"
+                        name={`${addItem.name}`}
+                        defaultValue={
+                          addItem.title === "Price"
+                            ? `${editItem?.price}`
+                            : addItem.title === "Available Quantity"
+                            ? `${editItem?.available_quantity}`
+                            : addItem.title === "Description"
+                            ? `${editItem?.description}`
+                            : ""
+                        }
+                        placeholder={`${addItem.placeholder}`}
+                        className="input input-bordered w-full"
+                      />
+                    </label>
+                  ))}
+              </div>
+              <div className="modal-action">
+                <input
+                  className="btn"
+                  htmlFor="my-modal"
+                  type="submit"
+                  value="Update"
+                />
 
-            <div className="grid grid-cols-1 gap-2 md:mb-5">
-              {addItems.map((addItem, index) => (
-                <label key={index} className="input-group">
-                  <span className="w-2/5">{addItem.title}</span>
-                  <input
-                    type="text"
-                    name={`${addItem.name}`}
-                    defaultValue={
-                      addItems.title === "price"
-                        ? `${editItem.price}`
-                        : addItem.title === "Seller Name"
-                        ? `${user?.displayName}`
-                        : ""
-                    }
-                    placeholder={`${addItem.placeholder}`}
-                    className="input input-bordered w-full"
-                  />
+                <label htmlFor="my-modal" className="btn">
+                  Close{" "}
                 </label>
-              ))}
-            </div>
-          </div>
-          <div className="modal-action">
-            <label htmlFor="my-modal" className="btn">
-              Edit
-            </label>
+              </div>
+            </form>
           </div>
         </div>
       </div>

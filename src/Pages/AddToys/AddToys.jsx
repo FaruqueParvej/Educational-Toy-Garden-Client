@@ -64,6 +64,7 @@ const AddToys = () => {
     const price = form.price.value;
     const available_quantity = form.available_quantity.value;
     const rating = form.rating.value;
+    const description = form.description.value;
 
     const newToy = {
       seller_name,
@@ -74,15 +75,19 @@ const AddToys = () => {
       price,
       available_quantity,
       rating,
+      description,
     };
     console.log(newToy);
-    fetch("http://localhost:5000/products", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(newToy),
-    })
+    fetch(
+      "https://b7a11-toy-marketplace-server-side-faruque-parvej.vercel.app/products",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(newToy),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
