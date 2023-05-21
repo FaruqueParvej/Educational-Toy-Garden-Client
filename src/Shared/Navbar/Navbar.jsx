@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
@@ -8,6 +8,16 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     logout();
+  };
+
+  // console.log(user?.displayName);
+  const [showName, setShowName] = useState(false);
+  const handleMouseOver = () => {
+    setShowName(true);
+  };
+
+  const handleMouseOut = () => {
+    setShowName(false);
   };
 
   const navItems = (
@@ -93,9 +103,12 @@ const Navbar = () => {
         <div className="dropdown dropdown-end">
           {user && (
             <>
-              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                <div className="w-10 rounded-full">
+              <label tabIndex={0} className="flex">
+                <div>{showName && <p>{user?.displayName}</p>}</div>
+                <div className="w-10 rounded-full  avatar">
                   <img
+                    onMouseOver={handleMouseOver}
+                    onMouseOut={handleMouseOut}
                     src={
                       "https://wpjournalist.nl/wp-content/uploads/2021/09/myAvatar.png"
                     }
