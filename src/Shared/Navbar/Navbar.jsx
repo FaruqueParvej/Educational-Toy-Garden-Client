@@ -3,13 +3,12 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const Navbar = () => {
-  const {user,logout}=useContext(AuthContext)
+  const { user, logout } = useContext(AuthContext);
   console.log(user?.displayName);
 
-  const handleLogOut=()=>{
-    logout()
-  }
-
+  const handleLogOut = () => {
+    logout();
+  };
 
   const navItems = (
     <>
@@ -22,17 +21,22 @@ const Navbar = () => {
         </Link>
       </li>
 
-      {user && <li>
-        <Link to="addtoys">Add a Toy</Link>
-      </li>}
-      {user && <li>
-        <Link to="mytoys">My Toys</Link>
-      </li>}
+      {user && (
+        <li>
+          <Link to="addtoys">Add a Toy</Link>
+        </li>
+      )}
+      {user && (
+        <li>
+          <Link to="mytoys">My Toys</Link>
+        </li>
+      )}
       <li>
         <Link to="blogs">Blogs</Link>
       </li>
     </>
   );
+
   return (
     <div className="navbar bg-base-100">
       <div className="navbar-start">
@@ -61,6 +65,9 @@ const Navbar = () => {
             <Link to="login" className="btn">
               Login
             </Link>
+            <Link to="register" className="btn">
+              Register
+            </Link>
           </ul>
         </div>
         <label tabIndex={0}>
@@ -82,36 +89,45 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
-      <div className="navbar-end hidden lg:flex">
-      <div className="dropdown dropdown-end">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            {user && <div className="w-10 rounded-full">
-              <img
-                src={
-                  "https://wpjournalist.nl/wp-content/uploads/2021/09/myAvatar.png"
-                }
-              />
-            </div>}
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            <li>
-              <a className="justify-between">Profile</a>
-            </li>
-            <li>
-              <button onClick={handleLogOut} className="btn">Logout</button>
-            </li>
-          </ul>
+      <div className="navbar-end lg:flex">
+        <div className="dropdown dropdown-end">
+          {user && (
+            <>
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img
+                    src={
+                      "https://wpjournalist.nl/wp-content/uploads/2021/09/myAvatar.png"
+                    }
+                  />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <a className="justify-between">Profile</a>
+                </li>
+                <li>
+                  <button onClick={handleLogOut} className="btn text-white">
+                    Logout
+                  </button>
+                </li>
+              </ul>
+            </>
+          )}
         </div>
-        <Link to="login" className="btn mx-2">
-          Login
-        </Link>
-        <Link to="register" className="btn">
-          Register
-        </Link>
-        
+        {!user && (
+          <>
+            <Link to="login" className="btn mx-2">
+              Login
+            </Link>
+            <Link to="register" className="btn">
+              Register
+            </Link>
+          </>
+        )}
       </div>
     </div>
   );
